@@ -1,0 +1,15 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /cms-api
+  pid:
+    file: application.pid
+cluo-management:
+  default-top-bar-key:
+  default-side-bar-key:
+  default-sub-side-bar-key:
+  ui:
+    layout: AppTopSide
+  host: http://localhost
+  base-path: ${cluo-management.host}${server.servlet.context-path}
+  data-path: ${cluo-management.base-path}
