@@ -9,6 +9,7 @@ import org.cluo.framework.management.model.common.enums.CmsAction;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author canfuu.cts
@@ -24,12 +25,12 @@ public class Demo122Controller {
         System.out.println(JSONUtil.fromObjectAsString(userRequest));
         return CluoList.of(
                 50L,
-                new UserResponse().setId("1").setNickname("张三").setGender("男").setEmail("a@163.com").setPhone("12345678901"),
-                new UserResponse().setId("2").setNickname("李四").setGender("男").setEmail("b@163.com").setPhone("12345678902"),
-                new UserResponse().setId("3").setNickname("王五").setGender("男").setEmail("c@1163.com").setPhone("12345678903"),
-                new UserResponse().setId("1").setNickname("张三").setGender("男").setEmail("a@163.com").setPhone("12345678901"),
-                new UserResponse().setId("2").setNickname("李四").setGender("男").setEmail("b@163.com").setPhone("12345678902"),
-                new UserResponse().setId("3").setNickname("王五").setGender("男").setEmail("c@1163.com").setPhone("12345678903")
+                new UserResponse().setId("1").setNickname("张三").setGender("男").setEmail("a@163.com").setPhone(new Random().nextInt(10000)+""),
+                new UserResponse().setId("2").setNickname("李四").setGender("男").setEmail("b@163.com").setPhone(new Random().nextInt(10000)+""),
+                new UserResponse().setId("3").setNickname("王五").setGender("男").setEmail("c@1163.com").setPhone(new Random().nextInt(10000)+""),
+                new UserResponse().setId("1").setNickname("张三").setGender("男").setEmail("a@163.com").setPhone(new Random().nextInt(10000)+""),
+                new UserResponse().setId("2").setNickname("李四").setGender("男").setEmail("b@163.com").setPhone(new Random().nextInt(10000)+""),
+                new UserResponse().setId("3").setNickname("王五").setGender("男").setEmail("c@1163.com").setPhone(new Random().nextInt(10000)+"")
         );
     }
 

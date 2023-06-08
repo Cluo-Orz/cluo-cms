@@ -4,10 +4,12 @@ import org.cluo.framework.json.JSONUtil;
 import org.cluo.framework.management.annotation.CmsController;
 import org.cluo.framework.management.annotation.CmsMapping;
 import org.cluo.framework.management.annotation.CmsRequestBody;
+import org.cluo.framework.management.model.api.CluoList;
 import org.cluo.framework.management.model.common.enums.CmsAction;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author canfuu.cts
@@ -18,15 +20,16 @@ import java.util.List;
 @RequestMapping("/demo211")
 public class Demo211Controller {
 
+    private Map<String, UserResponse> users = new HashMap<>();
+
     @CmsMapping(path = "/user", action = CmsAction.ListSelectData)
-    public List<UserResponse> userList(@CmsRequestBody UserRequest userRequest) {
+    public CluoList<UserResponse> userList(@CmsRequestBody UserRequest userRequest) {
         System.out.println(JSONUtil.fromObjectAsString(userRequest));
-        return List.of(
-                new UserResponse().setId("1").setNickname("张三").setGender("男").setEmail("a@163.com").setPhone("12345678901"),
-                new UserResponse().setId("2").setNickname("李四").setGender("男").setEmail("b@163.com").setPhone("12345678902"),
-                new UserResponse().setId("3").setNickname("王五").setGender("男").setEmail("c@1163.com").setPhone("12345678903")
-        );
+        return CluoList.of(users.size(), users.values().stream().filter(userResponse -> {
+            return userResponse.nickname.contains(userRequest.getKeyword());
+        }).collect(Collectors.toList()));
     }
+
 
     public static class UserRequest {
         private String keyword;

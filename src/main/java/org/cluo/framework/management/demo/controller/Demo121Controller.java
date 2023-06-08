@@ -8,6 +8,7 @@ import org.cluo.framework.management.model.common.enums.CmsAction;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author canfuu.cts
@@ -21,7 +22,7 @@ public class Demo121Controller {
     @CmsMapping(path = "/user", action = CmsAction.ListSelectData)
     public List<UserResponse> userList(@CmsRequestBody UserRequest userRequest) {
         System.out.println(JSONUtil.fromObjectAsString(userRequest));
-        return List.of(new UserResponse().setId("2").setNickname("李四").setGender("男").setEmail("b@163.com").setPhone("12345678902"));
+        return List.of(new UserResponse().setId("2").setNickname("李四").setGender("男").setEmail("b@163.com").setPhone(new Random().nextInt(10000)+""));
     }
 
     public static class UserRequest {
