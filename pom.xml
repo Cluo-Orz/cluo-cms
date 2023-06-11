@@ -9,7 +9,7 @@
         <version>1.0</version>
     </parent>
     <artifactId>cluo-cms</artifactId>
-    <version>1.0.0-antd</version>
+    <version>0.0.1-antd.SNAPTHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
