@@ -1,5 +1,3 @@
-当然，我可以帮助你编写关于你的Java项目的README.md文件。下面是一个示例，包含了项目的概述、功能、技术栈、安装和使用说明等内容。你可以根据实际情况进行修改和补充。
-
 # Cluo CMS Java Project
 
 Cluo CMS is a Java framework built on top of Spring Boot that provides a set of annotations, such as `@CmsMapping`, `@CmcController`, and `@CmsField`, to develop APIs. The framework automatically scans for these annotations, and based on the annotation information, generates a management backend with features like CRUD operations, reporting, statistics, and various toggles. The backend is powered by a Java backend and a React frontend, where the frontend files are stored within the backend.
