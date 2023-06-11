@@ -197,14 +197,12 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
                 }
             }
 
-            if (subKeyLabel != null) {
-                throw new LeftSubDuplicatedException();
+            if (subKeyLabel == null) {
+                subSideBars.add(new KeyLabel(subSideBarKey, subSideBarTitle));
+
+                cmsContentConfig.setType(cmsController.type());
             }
 
-
-            subSideBars.add(new KeyLabel(subSideBarKey, subSideBarTitle));
-
-            cmsContentConfig.setType(cmsController.type());
         }
 
         List<ActionFieldModel> actionFieldModels = new ArrayList<>();
@@ -212,40 +210,44 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
         ActionProps props = new ActionProps();
 
         List<ActionFieldModel> actionParamModels = new ArrayList<>();
+
+        MethodParameter returnTypeParam = handlerMethod.getReturnType();
+        Type returnType = returnTypeParam.getGenericParameterType();
+        Class<?> returnClass = returnTypeParam.getParameterType();
+        if(cmsMapping.action()[0].equals(CmsAction.ListSelectData) && !returnClass.isAssignableFrom(List.class) && !returnClass.isAssignableFrom(CluoList.class)){
+            throw new CmsReturnTypeException("CmsController返回类型必须是List或者CmsListModel" + handlerMethod.getMethod().toGenericString());
+        }
+        if(returnClass.isAssignableFrom(CluoList.class)){
+            props.setHasPagination(true);
+        }
+
+        if (((Type)returnType) instanceof ParameterizedType) {
+            ParameterizedType parameterizedType = (ParameterizedType) (Type)returnType;
+            Type[] typeArguments = parameterizedType.getActualTypeArguments();
+
+            if (typeArguments.length > 0) {
+                Type typeArgument = typeArguments[0];
+                if (typeArgument instanceof Class) {
+                    returnClass = (Class<?>) typeArgument;
+                }
+            }
+        }
+
+        ReflectUtil.getFields(returnClass).forEach(field -> {
+            actionFieldModels.add(buildFieldModel(field));
+        });
+
+
         if(bodyParameter != null) {
             Class<?> parameterType = bodyParameter.getParameterType();
-            MethodParameter returnTypeParam = handlerMethod.getReturnType();
-            Type returnType = returnTypeParam.getGenericParameterType();
-            Class<?> returnClass = returnTypeParam.getParameterType();
-            if(!returnClass.isAssignableFrom(List.class) && !returnClass.isAssignableFrom(CluoList.class)){
-                throw new CmsReturnTypeException("CmsController返回类型必须是List或者CmsListModel" + handlerMethod.getMethod().toGenericString());
-            }
 
-            if(returnClass.isAssignableFrom(CluoList.class)){
-                props.setHasPagination(true);
-            }
+
 
             ReflectUtil.getFields(parameterType).forEach(field -> {
                 actionParamModels.add(buildFieldModel(field));
             });
 
 
-
-            if (((Type)returnType) instanceof ParameterizedType) {
-                ParameterizedType parameterizedType = (ParameterizedType) (Type)returnType;
-                Type[] typeArguments = parameterizedType.getActualTypeArguments();
-
-                if (typeArguments.length > 0) {
-                    Type typeArgument = typeArguments[0];
-                    if (typeArgument instanceof Class) {
-                        returnClass = (Class<?>) typeArgument;
-                    }
-                }
-            }
-
-            ReflectUtil.getFields(returnClass).forEach(field -> {
-                actionFieldModels.add(buildFieldModel(field));
-            });
 
         }
 
@@ -255,6 +257,7 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
                     .setContentType(cmsMapping.fileUpload()? ContentType.MULTIPART_FORM_DATA:ContentType.APPLICATION_JSON)
                     .setAction(cmsAction.name())
                     .setParams(actionParamModels)
+                    .setKeyField(cmsMapping.keyField())
                     .setFields(actionFieldModels)
                     .setProps(props)
             );
@@ -264,7 +267,6 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
         System.out.println(handlerMethod.getBeanType().getName());
         System.out.println(handlerMethod.getMethod().getName());
         System.out.println(mappingInfo);
-        System.out.println(bodyParameter.getParameter().getType());
         System.out.println(PinyinConverter.convertToPinyin(cmsController.top()));
     }
 

@@ -19,8 +19,18 @@ public class ActionModel implements Serializable {
     private String method;
     private String action;
     private ContentType contentType;
+    private String keyField;
     private List<ActionFieldModel> params= new ArrayList<>();
     private List<ActionFieldModel> fields = new ArrayList<>();
+
+    public String getKeyField() {
+        return keyField;
+    }
+
+    public ActionModel setKeyField(String keyField) {
+        this.keyField = keyField;
+        return this;
+    }
 
     private ActionProps props = new ActionProps();
 

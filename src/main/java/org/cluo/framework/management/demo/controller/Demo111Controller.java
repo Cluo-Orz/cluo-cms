@@ -3,7 +3,6 @@ package org.cluo.framework.management.demo.controller;
 import org.cluo.framework.json.JSONUtil;
 import org.cluo.framework.management.annotation.CmsController;
 import org.cluo.framework.management.annotation.CmsMapping;
-import org.cluo.framework.management.annotation.CmsRequestBody;
 import org.cluo.framework.management.model.common.enums.CmsAction;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,7 +18,7 @@ import java.util.List;
 public class Demo111Controller {
 
     @CmsMapping(path = "/user", action = CmsAction.ListSelectData)
-    public List<UserResponse> userList(@CmsRequestBody UserRequest userRequest) {
+    public List<UserResponse> userList(UserRequest userRequest) {
         System.out.println(JSONUtil.fromObjectAsString(userRequest));
         return null;
     }

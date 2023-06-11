@@ -36,4 +36,6 @@ public @interface CmsMapping {
             annotation = RequestMapping.class
     )
     String[] produces() default {};
+
+    String keyField() default "";
 }

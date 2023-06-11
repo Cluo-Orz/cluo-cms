@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @class CluoManagementApplication
  * @date 2023/6/1 23:54
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.cluo.framework.management")
 public class CluoManagementApplication {
 
     public static void main(String[] args) {

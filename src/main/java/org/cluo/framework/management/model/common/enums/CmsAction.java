@@ -10,8 +10,11 @@ public enum CmsAction {
     ListSelectOptions(ContentModelType.ManageListData),
     ListInsertData(ContentModelType.ManageListData),
     ListUpdateData(ContentModelType.ManageListData),
-    ListClickButton(ContentModelType.ManageListData),
-    ;
+    ListDeleteData(ContentModelType.ManageListData),
+
+    ListSelectDetail(ContentModelType.ManageListData);
+
+
 
     private final ContentModelType belongType;
 

@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  * @class CmsField
  * @date 2023/6/4 16:45
  */
-@Target({ElementType.PARAMETER})
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface CmsField {

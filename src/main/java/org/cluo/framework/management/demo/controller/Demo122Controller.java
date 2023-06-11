@@ -3,12 +3,10 @@ package org.cluo.framework.management.demo.controller;
 import org.cluo.framework.json.JSONUtil;
 import org.cluo.framework.management.annotation.CmsController;
 import org.cluo.framework.management.annotation.CmsMapping;
-import org.cluo.framework.management.annotation.CmsRequestBody;
 import org.cluo.framework.management.model.api.CluoList;
 import org.cluo.framework.management.model.common.enums.CmsAction;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -21,7 +19,7 @@ import java.util.Random;
 public class Demo122Controller {
 
     @CmsMapping(path = "/user", action = CmsAction.ListSelectData)
-    public CluoList<UserResponse> userList(@CmsRequestBody UserRequest userRequest) {
+    public CluoList<UserResponse> userList(UserRequest userRequest) {
         System.out.println(JSONUtil.fromObjectAsString(userRequest));
         return CluoList.of(
                 50L,
