@@ -208,7 +208,7 @@ Cluo CMS是一个基于Spring Boot的Java框架，提供了一系列注解，如
 
 这样，你就可以通过Cluo CMS框架快速开发管理后台功能了！
 
-# 参与开发/源码部署 
+# 参与开发/源码部署 (Development/Deployment)
 
 ## 安装 (Installation)
 
