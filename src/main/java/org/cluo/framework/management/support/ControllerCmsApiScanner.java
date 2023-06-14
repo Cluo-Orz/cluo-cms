@@ -281,7 +281,8 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
                     .setDisplayName(cmsField.displayName())
                     .setRequired(cmsField.required())
                     .setDataUrl(cmsField.dataUrl())
-                    .setRowCount(cmsField.defaultRow());
+                    .setFileSuffix(cmsField.fileSuffix())
+                    .setFileCount(cmsField.fileCount());
         } else {
             return new ActionFieldModel()
                     .setPlaceholder("请输入" + field.getName())

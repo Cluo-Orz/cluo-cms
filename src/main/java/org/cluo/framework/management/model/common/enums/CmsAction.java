@@ -14,8 +14,6 @@ public enum CmsAction {
 
     ListSelectDetail(ContentModelType.ManageListData);
 
-
-
     private final ContentModelType belongType;
 
     CmsAction(ContentModelType belongType) {

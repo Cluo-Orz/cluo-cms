@@ -23,7 +23,9 @@ public class ActionFieldModel {
 
     private String dataUrl;
 
-    private Integer rowCount;
+    private Integer fileCount;
+
+    private String fileSuffix;
 
     public static ActionFieldModel build(String name) {
         return new ActionFieldModel().setName(name).setDisplayName(name);
@@ -139,12 +141,21 @@ public class ActionFieldModel {
         return this;
     }
 
-    public Integer getRowCount() {
-        return rowCount;
+    public Integer getFileCount() {
+        return fileCount;
     }
 
-    public ActionFieldModel setRowCount(Integer rowCount) {
-        this.rowCount = rowCount;
+    public ActionFieldModel setFileCount(Integer fileCount) {
+        this.fileCount = fileCount;
+        return this;
+    }
+
+    public String getFileSuffix() {
+        return fileSuffix;
+    }
+
+    public ActionFieldModel setFileSuffix(String fileSuffix) {
+        this.fileSuffix = fileSuffix;
         return this;
     }
 }

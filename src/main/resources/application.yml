@@ -4,6 +4,11 @@ server:
     context-path: /cms-api
   pid:
     file: application.pid
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+
 cluo-management:
   default-top-bar-key:
   default-side-bar-key:

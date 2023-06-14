@@ -32,5 +32,7 @@ public @interface CmsField {
 
     String dataUrl() default "";
 
-    int defaultRow() default 0;
+    String fileSuffix() default "";
+
+    int fileCount() default 1;
 }

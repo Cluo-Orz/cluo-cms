@@ -1,5 +1,6 @@
 package org.cluo.framework.management.demo.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.cluo.framework.management.annotation.CmsController;
 import org.cluo.framework.management.annotation.CmsField;
 import org.cluo.framework.management.annotation.CmsMapping;
@@ -7,9 +8,15 @@ import org.cluo.framework.management.annotation.CmsRequestBody;
 import org.cluo.framework.management.model.api.CluoList;
 import org.cluo.framework.management.model.common.enums.CmsAction;
 import org.cluo.framework.management.model.common.enums.ContentFieldType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +88,41 @@ public class Demo211Controller {
         return users.get(id);
     }
 
+
+    @PostMapping("/upload")
+    public List<String> upload(FileRequest request) throws IOException {
+        for (MultipartFile multipartFile : request.urls) {
+            Files.write(Paths.get("/Users/chutianshu/Pictures/test/"+System.currentTimeMillis()+".png"), multipartFile.getBytes(), StandardOpenOption.WRITE, StandardOpenOption.CREATE);
+        }
+        return List.of("https://mxjc.canfuu.com/dgr/file/USER_DEFAULT_AVATAR/7677f78b-e3dd-4ac6-b82a-cc0db3f33d62.png");
+    }
+
+    public class FileRequest {
+        @JsonIgnore
+        private MultipartFile[] urls;
+
+        private String code;
+
+        public String getCode() {
+            return code;
+        }
+
+        public FileRequest setCode(String code) {
+            this.code = code;
+            return this;
+        }
+
+        public MultipartFile[] getUrls() {
+            return urls;
+        }
+
+        public FileRequest setUrls(MultipartFile[] urls) {
+            this.urls = urls;
+            return this;
+        }
+    }
+
+
     public static class UserType {
         private String key;
         private String name;
@@ -149,6 +191,18 @@ public class Demo211Controller {
 
         @CmsField(type = ContentFieldType.Table, defaultValue = "[{\"key\":\"1\",\"name\":\"\",\"type\":\"\"},{\"key\":\"2\",\"name\":\"\",\"type\":\"\"},{\"key\":\"3\",\"name\":\"\",\"type\":\"\"},{\"key\":\"4\",\"name\":\"\",\"type\":\"\"},{\"key\":\"5\",\"name\":\"\",\"type\":\"\"},{\"key\":\"6\",\"name\":\"\",\"type\":\"\"}]")
         private List<UserType> userTypes;
+
+        @CmsField(displayName = "路径", type = ContentFieldType.File, fileSuffix = "png", dataUrl = "/demo211/upload", fileCount= 1)
+        private String urls = "https://mxjc.canfuu.com/dgr/file/USER_DEFAULT_AVATAR/7677f78b-e3dd-4ac6-b82a-cc0db3f33d62.png";
+
+        public String getUrls() {
+            return urls;
+        }
+
+        public UserResponse setUrls(String urls) {
+            this.urls = urls;
+            return this;
+        }
 
         public List<UserType> getUserTypes() {
             return userTypes;
