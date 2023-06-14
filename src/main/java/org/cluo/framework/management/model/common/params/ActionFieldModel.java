@@ -23,6 +23,8 @@ public class ActionFieldModel {
 
     private String dataUrl;
 
+    private Integer rowCount;
+
     public static ActionFieldModel build(String name) {
         return new ActionFieldModel().setName(name).setDisplayName(name);
     }
@@ -134,6 +136,15 @@ public class ActionFieldModel {
 
     public ActionFieldModel setDefaultValue(String defaultValue) {
         this.defaultValue = defaultValue;
+        return this;
+    }
+
+    public Integer getRowCount() {
+        return rowCount;
+    }
+
+    public ActionFieldModel setRowCount(Integer rowCount) {
+        this.rowCount = rowCount;
         return this;
     }
 }

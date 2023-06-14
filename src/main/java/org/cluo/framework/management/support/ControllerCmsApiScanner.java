@@ -239,11 +239,9 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
 
 
         if(bodyParameter != null) {
-            Class<?> parameterType = bodyParameter.getParameterType();
+            Class<?> parameterClass = bodyParameter.getParameterType();
 
-
-
-            ReflectUtil.getFields(parameterType).forEach(field -> {
+            ReflectUtil.getFields(parameterClass).forEach(field -> {
                 actionParamModels.add(buildFieldModel(field));
             });
 
@@ -282,7 +280,8 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
                     .setTips(cmsField.tips())
                     .setDisplayName(cmsField.displayName())
                     .setRequired(cmsField.required())
-                    .setDataUrl(cmsField.dataUrl());
+                    .setDataUrl(cmsField.dataUrl())
+                    .setRowCount(cmsField.defaultRow());
         } else {
             return new ActionFieldModel()
                     .setPlaceholder("请输入" + field.getName())

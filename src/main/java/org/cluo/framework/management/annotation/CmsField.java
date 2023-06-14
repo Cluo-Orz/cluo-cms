@@ -31,4 +31,6 @@ public @interface CmsField {
     String tips() default "数据格式错误";
 
     String dataUrl() default "";
+
+    int defaultRow() default 0;
 }

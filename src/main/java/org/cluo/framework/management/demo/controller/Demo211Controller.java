@@ -6,10 +6,12 @@ import org.cluo.framework.management.annotation.CmsMapping;
 import org.cluo.framework.management.annotation.CmsRequestBody;
 import org.cluo.framework.management.model.api.CluoList;
 import org.cluo.framework.management.model.common.enums.CmsAction;
+import org.cluo.framework.management.model.common.enums.ContentFieldType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -79,6 +81,38 @@ public class Demo211Controller {
         return users.get(id);
     }
 
+    public static class UserType {
+        private String key;
+        private String name;
+        private String type;
+
+        public String getKey() {
+            return key;
+        }
+
+        public UserType setKey(String key) {
+            this.key = key;
+            return this;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public UserType setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public UserType setType(String type) {
+            this.type = type;
+            return this;
+        }
+    }
 
     public static class UserRequest {
         private String keyword;
@@ -113,6 +147,17 @@ public class Demo211Controller {
         @CmsField(displayName = "邮箱",regex = "[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+", placeholder = "请输入邮箱信息", tips = "请输入正确的邮箱信息")
         private String email;
 
+        @CmsField(type = ContentFieldType.Table, defaultValue = "[{\"key\":\"1\",\"name\":\"\",\"type\":\"\"},{\"key\":\"2\",\"name\":\"\",\"type\":\"\"},{\"key\":\"3\",\"name\":\"\",\"type\":\"\"},{\"key\":\"4\",\"name\":\"\",\"type\":\"\"},{\"key\":\"5\",\"name\":\"\",\"type\":\"\"},{\"key\":\"6\",\"name\":\"\",\"type\":\"\"}]")
+        private List<UserType> userTypes;
+
+        public List<UserType> getUserTypes() {
+            return userTypes;
+        }
+
+        public UserResponse setUserTypes(List<UserType> userTypes) {
+            this.userTypes = userTypes;
+            return this;
+        }
 
         public String getId() {
             return id;

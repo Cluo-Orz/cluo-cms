@@ -14,7 +14,7 @@ import java.util.Random;
  * @class DemoController
  * @date 2023/6/3 13:05
  */
-@CmsController(top = "系统设置2", left = "用户1", leftSub = "用户信息管理2")
+//@CmsController(top = "系统设置2", left = "用户1", leftSub = "用户信息管理2")
 @RequestMapping("/demo212")
 public class Demo212Controller {
 

@@ -7,5 +7,6 @@ package org.cluo.framework.management.model.common.enums;
  */
 public enum ContentFieldType {
     Button,
-    Text
+    Text,
+    Table
 }

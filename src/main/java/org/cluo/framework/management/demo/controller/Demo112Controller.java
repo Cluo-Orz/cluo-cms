@@ -13,7 +13,7 @@ import java.util.List;
  * @class DemoController
  * @date 2023/6/3 13:05
  */
-@CmsController(top = "系统设置1", left = "用户1", leftSub = "用户信息管理2")
+//@CmsController(top = "系统设置1", left = "用户1", leftSub = "用户信息管理2")
 @RequestMapping("/demo112")
 public class Demo112Controller {
 
