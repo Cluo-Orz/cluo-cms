@@ -1,4 +1,4 @@
-# Cluo CMS Java Project
+# Cluo CMS Java Project[开发中 / In Development]
 
 Cluo CMS is a Java framework built on top of Spring Boot that provides a set of annotations, such as `@CmsMapping`, `@CmcController`, and `@CmsField`, to develop APIs. The framework automatically scans for these annotations, and based on the annotation information, generates a management backend with features like CRUD operations, reporting, statistics, and various toggles. The backend is powered by a Java backend and a React frontend, where the frontend files are stored within the backend.
 
