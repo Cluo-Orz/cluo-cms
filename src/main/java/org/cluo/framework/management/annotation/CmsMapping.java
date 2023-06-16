@@ -38,4 +38,8 @@ public @interface CmsMapping {
     String[] produces() default {};
 
     String keyField() default "";
+
+    int defaultPage() default 1;
+
+    int defaultSize() default 10;
 }

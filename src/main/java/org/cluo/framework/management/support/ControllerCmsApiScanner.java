@@ -252,6 +252,8 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
                     .setParams(actionParamModels)
                     .setKeyField(cmsMapping.keyField())
                     .setFields(actionFieldModels)
+                    .setDefaultPage(cmsMapping.defaultPage())
+                    .setDefaultSize(cmsMapping.defaultSize())
                     .setProps(props)
             );
         }

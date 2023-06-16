@@ -12,20 +12,22 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "cluo-management")
 public class CluoManagementProperties {
 
-    private String basePath;
 
-    private String dataPath;
+    //  host: http://localhost:${server.port}
+    //  base-path: ${cluo-management.host}${server.servlet.context-path:}${spring.mvc.servlet.path:}
+    //  data-path: ${cluo-management.base-path}
 
+
+    @Value("${cluo-management.host:http://localhost:${server.port}}")
     private String host;
 
+    @Value("${cluo-management.base-path:${cluo-management.host:http://localhost:${server.port}}${server.servlet.context-path:}${spring.mvc.servlet.path:}}")
+    private String basePath;
+
+    @Value("${cluo-management.data-path:${cluo-management.host:http://localhost:${server.port}}${server.servlet.context-path:}${spring.mvc.servlet.path:}}")
+    private String dataPath;
 
     public CluoManagementProperties() {
-    }
-
-    public CluoManagementProperties(String basePath, String dataPath, String host) {
-        this.basePath = basePath;
-        this.dataPath = dataPath;
-        this.host = host;
     }
 
     public String getBasePath() {

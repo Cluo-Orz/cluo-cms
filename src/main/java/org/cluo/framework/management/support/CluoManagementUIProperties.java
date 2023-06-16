@@ -14,7 +14,8 @@ import org.springframework.stereotype.Component;
 public class CluoManagementUIProperties {
 
 
-    private PublicLayout layout = PublicLayout.AppTopSide;
+    @Value("${cluo-management.ui.layout:AppTopSide}")
+    private PublicLayout layout;
 
     public PublicLayout getLayout() {
         return layout;

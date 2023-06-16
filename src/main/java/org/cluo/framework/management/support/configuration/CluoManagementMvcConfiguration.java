@@ -31,29 +31,9 @@ import java.util.List;
 @EnableWebMvc
 public class CluoManagementMvcConfiguration implements WebMvcConfigurer {
 
-    @Value("${server.servlet.context-path:}")
-    private String contextPath;
-
-    @Value("${spring.mvc.servlet.path:}")
-    private String servletPath;
-
-    @Value("${server.port}")
-    private String port;
-
     @Bean
     public CluoManagementProperties cluoManagementProperties() {
-        //  host: http://localhost:${server.port}
-        //  base-path: ${cluo-management.host}${server.servlet.context-path:}${spring.mvc.servlet.path:}
-        //  data-path: ${cluo-management.base-path}
-        String host = "http://localhost:"+port;
-        String basePath = host + contextPath + servletPath;
-        String dataPath = basePath;
-
-        return new CluoManagementProperties(
-                basePath,
-                dataPath,
-                host
-        );
+        return new CluoManagementProperties();
     }
 
     @Bean

@@ -20,6 +20,10 @@ public class ActionModel implements Serializable {
     private String action;
     private ContentType contentType;
     private String keyField;
+
+    private Integer defaultSize;
+    private Integer defaultPage;
+
     private List<ActionFieldModel> params= new ArrayList<>();
     private List<ActionFieldModel> fields = new ArrayList<>();
 
@@ -100,6 +104,24 @@ public class ActionModel implements Serializable {
 
     public ActionModel setMethod(String method) {
         this.method = method;
+        return this;
+    }
+
+    public Integer getDefaultSize() {
+        return defaultSize;
+    }
+
+    public ActionModel setDefaultSize(Integer defaultSize) {
+        this.defaultSize = defaultSize;
+        return this;
+    }
+
+    public Integer getDefaultPage() {
+        return defaultPage;
+    }
+
+    public ActionModel setDefaultPage(Integer defaultPage) {
+        this.defaultPage = defaultPage;
         return this;
     }
 }
