@@ -7,6 +7,7 @@ import org.cluo.framework.management.model.common.enums.Icon;
 import org.cluo.framework.management.model.common.params.ActionModel;
 import org.cluo.framework.management.model.common.params.ActionFieldModel;
 import org.cluo.framework.management.model.common.params.SimpleHttpModel;
+import org.cluo.framework.management.support.CluoManagementProperties;
 import org.cluo.framework.management.support.CluoManagementUIProperties;
 import org.cluo.framework.management.support.CmsApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +27,6 @@ import java.util.Random;
 @Service
 public class CmsSystemService {
 
-    @Value("${server.servlet.context-path}")
-    private String contentPath;
-
-    @Value("${cluo-management.host}")
-    private String host;
-
-    @Value("${cluo-management.base-path}")
-    private String basePath;
-
-    @Value("${cluo-management.data-path}")
-    private String dataPath;
 
     @Autowired
     private CmsApi cmsApi;
@@ -44,21 +34,26 @@ public class CmsSystemService {
     @Autowired
     private CluoManagementUIProperties cluoManagementUIProperties;
 
+    @Autowired
+    private CluoManagementProperties cluoManagementProperties;
+
 
     public CmsPublicInfo publicInfo() throws Exception {
         CmsPublicInfo cmsPublicInfo = new CmsPublicInfo();
         cmsPublicInfo.setLayout(cluoManagementUIProperties.getLayout());
-        cmsPublicInfo.setHost(host);
-        cmsPublicInfo.setBasePath(basePath);
-        cmsPublicInfo.setDataPath(dataPath);
+        cmsPublicInfo.setHost(cluoManagementProperties.getHost());
+        cmsPublicInfo.setBasePath(cluoManagementProperties.getBasePath());
+        cmsPublicInfo.setDataPath(cluoManagementProperties.getDataPath());
         cmsPublicInfo.setBarInfo(new ArrayList<>(cmsApi.getKTopKeyVBarInfo().values()));
         cmsPublicInfo.toKeyPath();
-        cmsPublicInfo.setDefaultTopBar(cmsApi.getDefaultTopBar());
-        cmsPublicInfo.setDefaultTopBarTitle(cmsApi.getDefaultTopBarTitle());
-        cmsPublicInfo.setDefaultSideBar(cmsApi.getBarInfo(cmsApi.getDefaultTopBar()).getDefaultSideBar());
-        cmsPublicInfo.setDefaultSideBarTitle(cmsApi.getBarInfo(cmsApi.getDefaultTopBar()).getDefaultSideBarTitle());
-        cmsPublicInfo.setDefaultSubSideBar(cmsApi.getBarInfo(cmsApi.getDefaultTopBar()).getDefaultSubSideBar());
-        cmsPublicInfo.setDefaultSubSideBarTitle(cmsApi.getBarInfo(cmsApi.getDefaultTopBar()).getDefaultSubSideBarTitle());
+        if(cmsApi.getDefaultTopBar() != null) {
+            cmsPublicInfo.setDefaultTopBarTitle(cmsApi.getDefaultTopBarTitle());
+            cmsPublicInfo.setDefaultTopBar(cmsApi.getDefaultTopBar());
+            cmsPublicInfo.setDefaultSideBar(cmsApi.getBarInfo(cmsApi.getDefaultTopBar()).getDefaultSideBar());
+            cmsPublicInfo.setDefaultSideBarTitle(cmsApi.getBarInfo(cmsApi.getDefaultTopBar()).getDefaultSideBarTitle());
+            cmsPublicInfo.setDefaultSubSideBar(cmsApi.getBarInfo(cmsApi.getDefaultTopBar()).getDefaultSubSideBar());
+            cmsPublicInfo.setDefaultSubSideBarTitle(cmsApi.getBarInfo(cmsApi.getDefaultTopBar()).getDefaultSubSideBarTitle());
+        }
         return cmsPublicInfo;
     }
 

@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.cluo.framework.management.support.configuration.CluoManagementConfiguration,\
+org.cluo.framework.management.support.configuration.CluoManagementMvcConfiguration

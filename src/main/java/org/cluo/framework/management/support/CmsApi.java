@@ -2,6 +2,7 @@ package org.cluo.framework.management.support;
 
 import org.cluo.framework.management.model.common.CmsBarInfo;
 import org.cluo.framework.management.model.common.CmsContentConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -15,6 +16,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Component
 public class CmsApi {
+
+
+
 
     private String defaultTopBar;
 
@@ -75,5 +79,21 @@ public class CmsApi {
         this.defaultTopBarTitle = defaultTopBarTitle;
         return this;
     }
+    public Map<String, CmsContentConfig> getkSubSideKeyVConfig() {
+        return kSubSideKeyVConfig;
+    }
 
+    public CmsApi setkSubSideKeyVConfig(Map<String, CmsContentConfig> kSubSideKeyVConfig) {
+        this.kSubSideKeyVConfig = kSubSideKeyVConfig;
+        return this;
+    }
+
+    public Map<String, CmsBarInfo> getkTopKeyVBarInfo() {
+        return kTopKeyVBarInfo;
+    }
+
+    public CmsApi setkTopKeyVBarInfo(Map<String, CmsBarInfo> kTopKeyVBarInfo) {
+        this.kTopKeyVBarInfo = kTopKeyVBarInfo;
+        return this;
+    }
 }

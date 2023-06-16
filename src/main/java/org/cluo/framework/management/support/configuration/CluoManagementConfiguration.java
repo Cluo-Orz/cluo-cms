@@ -1,32 +1,27 @@
 package org.cluo.framework.management.support.configuration;
 
-import org.cluo.framework.json.JSONUtil;
-import org.cluo.framework.management.support.adapter.CmsRequestBodyAdvice;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.cluo.framework.management.model.common.enums.PublicLayout;
+import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import java.util.Properties;
 
 /**
  * @author canfuu.cts
  * @class CluoManagementConfiguration
  * @date 2023/6/3 03:24
  */
-@Configuration
-public class CluoManagementConfiguration implements WebMvcConfigurer {
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-        List<HttpMessageConverter<?>> list = new ArrayList<>();
-        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
-        mappingJackson2HttpMessageConverter.setObjectMapper(JSONUtil.getObjectMapper());
-        list.add(mappingJackson2HttpMessageConverter);
-        resolvers.add(new CmsRequestBodyAdvice(list));
-    }
+@ComponentScan(basePackages = "org.cluo.framework.management")
+@ServletComponentScan(basePackages = "org.cluo.framework.management")
+public class CluoManagementConfiguration {
+
+
 }

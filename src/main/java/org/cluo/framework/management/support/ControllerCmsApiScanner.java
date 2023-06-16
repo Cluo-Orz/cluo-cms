@@ -45,11 +45,6 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
     @Autowired
     private CmsApi cmsApi;
 
-    @Value("${cluo-management.base-path}")
-    private String basePath;
-
-    @Value("${cluo-management.data-path}")
-    private String dataPath;
 
     private final static Object lock = new Object();
 
