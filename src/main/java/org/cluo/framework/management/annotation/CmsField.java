@@ -35,4 +35,6 @@ public @interface CmsField {
     String fileSuffix() default "";
 
     int fileCount() default 1;
+
+    boolean ignore() default false;
 }

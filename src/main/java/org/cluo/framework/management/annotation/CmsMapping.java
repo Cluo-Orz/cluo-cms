@@ -42,4 +42,6 @@ public @interface CmsMapping {
     int defaultPage() default 1;
 
     int defaultSize() default 10;
+
+    String name() default "";
 }

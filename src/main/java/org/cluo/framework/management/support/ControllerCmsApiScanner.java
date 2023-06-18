@@ -229,7 +229,11 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
         }
 
         ReflectUtil.getFields(returnClass).forEach(field -> {
-            actionFieldModels.add(buildFieldModel(field));
+            ActionFieldModel actionFieldModel = buildFieldModel(field);
+            if(actionFieldModel==null){
+                return;
+            }
+            actionFieldModels.add(actionFieldModel);
         });
 
 
@@ -237,7 +241,11 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
             Class<?> parameterClass = bodyParameter.getParameterType();
 
             ReflectUtil.getFields(parameterClass).forEach(field -> {
-                actionParamModels.add(buildFieldModel(field));
+                ActionFieldModel actionFieldModel = buildFieldModel(field);
+                if(actionFieldModel==null){
+                    return;
+                }
+                actionParamModels.add(actionFieldModel);
             });
 
 
@@ -252,22 +260,20 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
                     .setParams(actionParamModels)
                     .setKeyField(cmsMapping.keyField())
                     .setFields(actionFieldModels)
+                    .setName(cmsMapping.name())
                     .setDefaultPage(cmsMapping.defaultPage())
                     .setDefaultSize(cmsMapping.defaultSize())
                     .setProps(props)
             );
         }
-
-        System.out.println("==========");
-        System.out.println(handlerMethod.getBeanType().getName());
-        System.out.println(handlerMethod.getMethod().getName());
-        System.out.println(mappingInfo);
-        System.out.println(PinyinConverter.convertToPinyin(cmsController.top()));
     }
 
     public ActionFieldModel buildFieldModel(Field field) {
         CmsField cmsField = field.getAnnotation(CmsField.class);
         if (cmsField != null) {
+            if (cmsField.ignore()) {
+                return null;
+            }
             return new ActionFieldModel()
                     .setPlaceholder(cmsField.placeholder())
                     .setName(StringUtils.hasText(cmsField.name()) ? cmsField.name() : field.getName())

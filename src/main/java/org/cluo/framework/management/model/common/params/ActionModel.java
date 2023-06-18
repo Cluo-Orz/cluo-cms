@@ -15,6 +15,7 @@ import java.util.Map;
  */
 public class ActionModel implements Serializable {
 
+    private String name;
     private String url;
     private String method;
     private String action;
@@ -23,6 +24,7 @@ public class ActionModel implements Serializable {
 
     private Integer defaultSize;
     private Integer defaultPage;
+
 
     private List<ActionFieldModel> params= new ArrayList<>();
     private List<ActionFieldModel> fields = new ArrayList<>();
@@ -122,6 +124,15 @@ public class ActionModel implements Serializable {
 
     public ActionModel setDefaultPage(Integer defaultPage) {
         this.defaultPage = defaultPage;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ActionModel setName(String name) {
+        this.name = name;
         return this;
     }
 }

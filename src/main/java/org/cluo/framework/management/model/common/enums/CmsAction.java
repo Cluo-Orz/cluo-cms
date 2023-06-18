@@ -6,21 +6,12 @@ package org.cluo.framework.management.model.common.enums;
  * @date 2023/6/4 06:56
  */
 public enum CmsAction {
-    ListSelectData(ContentModelType.ManageListData),
-    ListSelectOptions(ContentModelType.ManageListData),
-    ListInsertData(ContentModelType.ManageListData),
-    ListUpdateData(ContentModelType.ManageListData),
-    ListDeleteData(ContentModelType.ManageListData),
+    ListSelectData,
+    ListInsertData,
+    ListUpdateData,
+    ListDeleteData,
+    ListSelectDetail,
+    Button,
+    TextButton
 
-    ListSelectDetail(ContentModelType.ManageListData);
-
-    private final ContentModelType belongType;
-
-    CmsAction(ContentModelType belongType) {
-        this.belongType = belongType;
-    }
-
-    public ContentModelType getBelongType() {
-        return belongType;
-    }
 }
