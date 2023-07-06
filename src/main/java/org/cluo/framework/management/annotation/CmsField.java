@@ -36,5 +36,9 @@ public @interface CmsField {
 
     int fileCount() default 1;
 
+    String fileName() default "";
+
+    boolean richText() default false;
+
     boolean ignore() default false;
 }

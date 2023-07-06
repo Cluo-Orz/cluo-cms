@@ -278,6 +278,7 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
                     .setPlaceholder(cmsField.placeholder())
                     .setName(StringUtils.hasText(cmsField.name()) ? cmsField.name() : field.getName())
                     .setType(cmsField.type())
+                    .setBool(field.getType().equals(Boolean.class))
                     .setDefaultValue(cmsField.defaultValue())
                     .setRegex(cmsField.regex())
                     .setTips(cmsField.tips())
@@ -285,6 +286,8 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
                     .setRequired(cmsField.required())
                     .setDataUrl(cmsField.dataUrl())
                     .setFileSuffix(cmsField.fileSuffix())
+                    .setFileName(cmsField.fileName())
+                    .setRichText(cmsField.richText())
                     .setFileCount(cmsField.fileCount());
         } else {
             return new ActionFieldModel()

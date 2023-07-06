@@ -21,11 +21,17 @@ public class ActionFieldModel {
 
     private String defaultValue;
 
+    private Boolean richText = false;
+
     private String dataUrl;
 
     private Integer fileCount;
 
     private String fileSuffix;
+
+    private String fileName;
+
+    private Boolean bool = false;
 
     public static ActionFieldModel build(String name) {
         return new ActionFieldModel().setName(name).setDisplayName(name);
@@ -156,6 +162,33 @@ public class ActionFieldModel {
 
     public ActionFieldModel setFileSuffix(String fileSuffix) {
         this.fileSuffix = fileSuffix;
+        return this;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public ActionFieldModel setFileName(String fileName) {
+        this.fileName = fileName;
+        return this;
+    }
+
+    public Boolean getRichText() {
+        return richText;
+    }
+
+    public ActionFieldModel setRichText(Boolean richText) {
+        this.richText = richText;
+        return this;
+    }
+
+    public Boolean getBool() {
+        return bool;
+    }
+
+    public ActionFieldModel setBool(Boolean bool) {
+        bool = bool;
         return this;
     }
 }

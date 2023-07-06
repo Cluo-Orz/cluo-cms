@@ -16,7 +16,6 @@ public class StaticServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(1341234);
         String requestURI = request.getRequestURI();
         String relativePath = "index.html";
         if(!requestURI.endsWith("cluo-cms")){
@@ -28,6 +27,19 @@ public class StaticServlet extends HttpServlet {
         if (resourceStream == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
+        }
+
+        // 根据文件扩展名设置content-type
+        String contentType = null;
+        if (relativePath.endsWith(".html")) {
+            contentType = "text/html";
+        } else if (relativePath.endsWith(".css")) {
+            contentType = "text/css";
+        } else if (relativePath.endsWith(".js")) {
+            contentType = "application/javascript";
+        }
+        if (contentType!=null) {
+            response.setContentType(contentType);
         }
 
         byte[] buffer = new byte[1024];
