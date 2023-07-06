@@ -188,7 +188,7 @@ public class ActionFieldModel {
     }
 
     public ActionFieldModel setBool(Boolean bool) {
-        bool = bool;
+        this.bool = bool;
         return this;
     }
 }

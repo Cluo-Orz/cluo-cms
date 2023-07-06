@@ -278,7 +278,7 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
                     .setPlaceholder(cmsField.placeholder())
                     .setName(StringUtils.hasText(cmsField.name()) ? cmsField.name() : field.getName())
                     .setType(cmsField.type())
-                    .setBool(field.getType().equals(Boolean.class))
+                    .setBool(field.getType().equals(Boolean.class) || field.getType().equals(boolean.class))
                     .setDefaultValue(cmsField.defaultValue())
                     .setRegex(cmsField.regex())
                     .setTips(cmsField.tips())
@@ -293,6 +293,7 @@ public class ControllerCmsApiScanner implements ApplicationRunner {
             return new ActionFieldModel()
                     .setPlaceholder("请输入" + field.getName())
                     .setDisplayName(field.getName())
+                    .setBool(field.getType().equals(Boolean.class) || field.getType().equals(boolean.class))
                     .setName(field.getName());
         }
     }

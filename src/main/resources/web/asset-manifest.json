@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/cluo-cms/static/css/main.73063538.css",
-    "main.js": "/cluo-cms/static/js/main.7efec25b.js",
+    "main.js": "/cluo-cms/static/js/main.44b3a3e8.js",
     "static/js/787.d756e839.chunk.js": "/cluo-cms/static/js/787.d756e839.chunk.js",
     "index.html": "/cluo-cms/index.html",
     "main.73063538.css.map": "/cluo-cms/static/css/main.73063538.css.map",
-    "main.7efec25b.js.map": "/cluo-cms/static/js/main.7efec25b.js.map",
+    "main.44b3a3e8.js.map": "/cluo-cms/static/js/main.44b3a3e8.js.map",
     "787.d756e839.chunk.js.map": "/cluo-cms/static/js/787.d756e839.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.73063538.css",
-    "static/js/main.7efec25b.js"
+    "static/js/main.44b3a3e8.js"
   ]
 }
